@@ -77,6 +77,7 @@
     const tries = document.querySelectorAll(".tries")
     tries[this.missed].firstElementChild.setAttribute("src","images/lostHeart.png")
     this.missed += 1
+    this.changeBackgroundRed()
     if(this.missed == 5) {
       this.gameOver(this.checkForWin())
     }
@@ -142,6 +143,7 @@
      document.querySelectorAll(".tries")[i].firstElementChild.setAttribute("src","images/liveHeart.png")
    }
    this.clearKeys()
+   document.querySelector(".main-container").style.backgroundColor = '';
   }
 
   /* gameOver()
@@ -163,5 +165,13 @@
       document.getElementById("overlay").style.display = ""
     }
     this.resetGame()
+  }
+
+  /* changeBackgroundRed()
+  - changes the backgroundColor of the main-container div to a deeper shade of red, as missed increases
+  */
+  changeBackgroundRed(){
+      let alpha = this.missed*0.20
+      document.querySelector(".main-container").style.backgroundColor = `rgba(245,120,95,${alpha})`;
   }
  }

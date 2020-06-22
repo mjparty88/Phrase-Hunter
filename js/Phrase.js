@@ -2,11 +2,9 @@
  * Project 4 - OOP Game App
  * Phrase.js */
 
-
-
  class Phrase {
 
-   /* phrase constructor 
+   /* phrase constructor
       @params - takes a phrase object (a string) as an argument
       - converst the  phrase arguement to toLowerCase and stores it in this.phrase
    */
