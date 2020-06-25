@@ -39,7 +39,7 @@ document.addEventListener("keydown", (e) => {
   let regex = /[a-zA-Z]/
   if(regex.test(e.key)) {
     keys.forEach(key => {
-      if(key.innerHTML == e.key) {
+      if(key.innerHTML == e.key && !key.disabled) { //added to stop multiple wrong keydowns of the same key from subtracting multiple lives
         game.handleInteraction(key)
       }
     })
