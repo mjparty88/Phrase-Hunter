@@ -6,13 +6,13 @@
 
    /* game constructor
       - initialised misses as 0
-      - initialises with a hardcoded array of 5 phrases
+      - initialises with a hardcoded array of 5 phrase objects
       - initialises with no activePhrase (which is set on startGame())
    */
 
    constructor() {
     this.missed = 0 //doesn't need to be passed to the constructor. It's automatically zero on creation.
-    this.phrases = ['golden arches', 'cat in the hat', 'look at the time', 'horses for courses', 'the cake is a lie'];
+    this.phrases = [{phrase: 'golden arches'}, {phrase: 'cat in the hat'} , {phrase: 'look at the time'}, {phrase: 'horses for courses'}, {phrase: 'the cake is a lie'} ];
     this.activePhrase = null
    }
 
@@ -28,14 +28,14 @@
   }
 
   /* function getRandomPhrase()
-  - this method randomly retrieves one of the phrases stored in the phrases array
-  - returns a string containing the randomly selected phrase
+  - this method randomly retrieves one of the objects stored in the phrases array
+  - returns a string containing the phrase contained in the randomly selected object
   */
 
   getRandomPhrase() {
 
     const randomIndex = Math.floor(this.phrases.length*Math.random())
-    return this.phrases[randomIndex]
+    return this.phrases[randomIndex].phrase
   }
 
   /* function handleInteraction()
@@ -52,18 +52,17 @@
 
       button.disabled = true;
       if(this.activePhrase.checkLetter(button.innerHTML)){
-          //true
+          //if the letter is in the activePhrase
         button.className = "chosen"
         this.activePhrase.showMatchedLetter(button.innerHTML)
-      } else {
-        button.className = "wrong"
-        this.removeLife()//false
-      }
-      if(document.getElementById("overlay").style.display == "none") { //tests for the game end only if the overlay is hidden (i.e. the game isn't already ended)
         if(this.checkForWin()) {
           this.gameOver(this.checkForWin())
         }
+      } else { //else if the letter is is not the activePhrase
+        button.className = "wrong"
+        this.removeLife()
       }
+
   }
 
   /* function removeLife()
